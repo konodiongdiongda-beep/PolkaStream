@@ -1,4 +1,6 @@
 # Logs
+.DS_Store
+.playwright-cli/
 logs
 *.log
 npm-debug.log*
@@ -77,6 +79,14 @@ web_modules/
 # Next.js build output
 .next
 out
+frontend/.next
+frontend/out
+frontend/test-results/
+
+# Foundry runtime artifacts
+broadcast/
+cache_forge/
+out/
 
 # Nuxt.js build / generate output
 .nuxt
@@ -137,3 +147,22 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Services runtime data
+services/adapter/output/
+services/settlement-daemon/output/
+services/api/data/
+
+# Local recording and render scratch files
+output/interactive-video/raw/
+output/interactive-video/raw-local-mock/
+output/interactive-video/*.webm
+output/interactive-video/*.mp4
+output/interactive-video/debug-console.mjs
+output/interactive-video/quick-shot.mjs
+output/remotion-intro/out/
+output/final-video/frames/
+output/final-video/oldframes/
+output/final-video/*.png
+output/final-video/final-check.png
+output/playwright/

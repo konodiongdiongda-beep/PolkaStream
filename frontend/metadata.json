@@ -1,0 +1,5 @@
+{
+  "name": "PolkaStream Ops",
+  "description": "Administrator console for PolkaStream network operations, settlements, and stream management.",
+  "requestFramePermissions": []
+}

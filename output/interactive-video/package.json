@@ -1,0 +1,12 @@
+{
+  "name": "polkastream-interactive-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "record": "node record.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2",
+    "viem": "^2.47.1"
+  }
+}

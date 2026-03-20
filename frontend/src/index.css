@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-primary: #62d6ff;
+}
+
+:root {
+  --bg-0: #fff8fb;
+  --bg-1: #fffdfd;
+  --bg-2: #fff2f7;
+  --ink-0: #101113;
+  --ink-1: #30323a;
+  --ink-2: #6d717d;
+  --ink-3: #989ca7;
+  --line-1: rgba(16, 17, 19, 0.08);
+  --line-2: rgba(16, 17, 19, 0.04);
+  --blue-1: #ff5ca4;
+  --green-1: #d9ed73;
+  --amber-1: #101113;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: var(--font-sans);
+    color: var(--ink-0);
+    background:
+      radial-gradient(circle at top left, rgba(255, 92, 164, 0.14), transparent 26%),
+      radial-gradient(circle at top right, rgba(255, 216, 232, 0.96), transparent 24%),
+      linear-gradient(180deg, #fffdfd 0%, #fff8fb 100%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(255, 92, 164, 0.18);
+    color: #101113;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Sora", "Manrope", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .font-mono-ui {
+    font-family: "IBM Plex Mono", "SF Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+}
+
+@layer components {
+  .app-shell {
+    background:
+      radial-gradient(circle at 16% 0%, rgba(255, 92, 164, 0.08), transparent 24%),
+      radial-gradient(circle at 82% 12%, rgba(255, 216, 232, 0.7), transparent 16%);
+  }
+
+  .panel {
+    @apply rounded-[24px] border backdrop-blur-xl;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.88)),
+      rgba(255, 255, 255, 0.9);
+    border-color: rgba(16, 17, 19, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      0 18px 40px rgba(16, 17, 19, 0.08);
+  }
+
+  .panel-muted {
+    @apply rounded-[22px] border backdrop-blur-xl;
+    background:
+      linear-gradient(180deg, rgba(255, 243, 248, 0.9), rgba(255, 250, 252, 0.96)),
+      rgba(255, 247, 250, 0.9);
+    border-color: rgba(16, 17, 19, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 10px 28px rgba(16, 17, 19, 0.05);
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-black/40;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-[16px] px-4 py-2.5 text-sm font-semibold text-white transition;
+    background:
+      linear-gradient(180deg, rgba(255, 116, 174, 0.98), rgba(255, 92, 164, 0.94));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 14px 30px rgba(255, 92, 164, 0.24);
+  }
+
+  .button-primary:hover {
+    background:
+      linear-gradient(180deg, rgba(255, 132, 184, 0.98), rgba(255, 104, 171, 0.94));
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-[16px] border px-4 py-2.5 text-sm font-medium text-black transition backdrop-blur-xl;
+    border-color: rgba(16, 17, 19, 0.08);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  }
+
+  .button-secondary:hover {
+    background: rgba(255, 245, 249, 0.96);
+  }
+
+  .input-shell {
+    @apply w-full rounded-[16px] border bg-white px-4 py-3 text-sm text-black outline-none transition placeholder:text-black/28;
+    border-color: rgba(16, 17, 19, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 0 0 1px rgba(16, 17, 19, 0.01);
+  }
+
+  .input-shell:focus {
+    border-color: rgba(255, 92, 164, 0.32);
+    background: rgba(255, 247, 250, 0.95);
+  }
+
+  .fx-rainbow-soft,
+  .fx-rainbow-dark,
+  .fx-rainbow-pink {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .fx-rainbow-soft::before,
+  .fx-rainbow-dark::before,
+  .fx-rainbow-pink::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 240ms ease;
+    background:
+      linear-gradient(
+        115deg,
+        rgba(255, 110, 185, 0.2),
+        rgba(255, 196, 79, 0.24),
+        rgba(130, 231, 255, 0.26),
+        rgba(188, 255, 118, 0.22),
+        rgba(255, 110, 185, 0.2)
+      );
+    background-size: 240% 240%;
+    filter: blur(10px);
+  }
+
+  .fx-rainbow-soft::after,
+  .fx-rainbow-dark::after,
+  .fx-rainbow-pink::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 24%,
+        rgba(255, 255, 255, 0.06) 38%,
+        rgba(255, 255, 255, 0.58) 50%,
+        rgba(255, 238, 246, 0.28) 58%,
+        transparent 72%
+      );
+    background-size: 220% 100%;
+    background-position: 140% 0;
+    opacity: 0;
+    transition: opacity 220ms ease;
+    mix-blend-mode: screen;
+  }
+
+  .fx-rainbow-soft:hover::before,
+  .fx-rainbow-dark:hover::before,
+  .fx-rainbow-pink:hover::before,
+  .fx-rainbow-soft:hover::after,
+  .fx-rainbow-dark:hover::after,
+  .fx-rainbow-pink:hover::after {
+    opacity: 1;
+    animation: rainbow-flow 2.8s linear infinite;
+  }
+
+  .fx-rainbow-soft:hover::after,
+  .fx-rainbow-dark:hover::after,
+  .fx-rainbow-pink:hover::after {
+    animation: sheen-slide 1.35s ease-in-out infinite;
+  }
+
+  .fx-rainbow-dark::before {
+    filter: blur(12px);
+  }
+
+  .fx-rainbow-pink::before {
+    filter: blur(14px);
+  }
+
+  .fx-rainbow-soft:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 16px 32px rgba(255, 92, 164, 0.12);
+  }
+
+  .fx-rainbow-dark:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 16px 34px rgba(255, 92, 164, 0.22);
+  }
+
+  .fx-rainbow-pink:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 22px 44px rgba(255, 92, 164, 0.28);
+  }
+}
+
+@keyframes rainbow-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes sheen-slide {
+  0% {
+    background-position: 140% 0;
+  }
+  100% {
+    background-position: -40% 0;
+  }
+}
+
+.persona-shell {
+  overflow: clip;
+  transition: height 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.persona-stage {
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 180ms cubic-bezier(0.4, 0, 1, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.persona-stage[data-phase="switching"] {
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.persona-stage[data-phase="idle"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .persona-shell,
+  .persona-stage {
+    transition: none;
+  }
+}

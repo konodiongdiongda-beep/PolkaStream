@@ -1,0 +1,44 @@
+{
+  "network": "polkadot-hub-testnet",
+  "chainId": 420420417,
+  "rpc": "https://services.polkadothub-rpc.com/testnet",
+  "source": "cast-send-manual",
+  "deployer": "0x064acEdF8b6c59D2E53230d3ebf72Ff19d8Ffa3e",
+  "executedAtUtc": "2026-03-09T08:23:24Z",
+  "relatedForgeRunLatest": "docs/deployment-artifacts/deploy-script-run-latest-420420417.json",
+  "transactions": [
+    {
+      "name": "Deploy XcmPrecompileNotifier",
+      "hash": "0x10c20cfb373b2d1aa13878473d493fa0bb538282bcdbb25c5ea9e20f8216adf7",
+      "blockNumber": 6181838,
+      "blockTimestampUtc": "2026-03-09T08:21:24Z",
+      "contractAddress": "0xb74411FcD5DB3B3e40f4a3FeE2144eA01E4Dd00e",
+      "constructor": {
+        "xcmPrecompile": "0x00000000000000000000000000000000000A0000"
+      }
+    },
+    {
+      "name": "Deploy PolkaStream",
+      "hash": "0xb53e52661426cc049ce10d4bef57ad229bfc3c7d8f7984082bd3ad561e02c6c8",
+      "blockNumber": 6181868,
+      "blockTimestampUtc": "2026-03-09T08:23:24Z",
+      "contractAddress": "0x0Ae8b341F31194DD34f11E075E34e3C266EF4d8D",
+      "constructor": {
+        "notifier": "0xb74411FcD5DB3B3e40f4a3FeE2144eA01E4Dd00e",
+        "maxDuration": 31536000,
+        "maxDepositPerStream": "1000000000000000000000000000"
+      }
+    },
+    {
+      "name": "setTokenAllowlist(token=true)",
+      "hash": "0x902ffe010460b6d56e6b79036f36e5032cb4652cb8b9ff19974c195076c29bf5",
+      "blockNumber": 6182312,
+      "blockTimestampUtc": "2026-03-09T08:39:24Z",
+      "target": "0x0Ae8b341F31194DD34f11E075E34e3C266EF4d8D",
+      "args": {
+        "token": "0xEe470D349633715a77A93B61E43eF0c881E8410B",
+        "allowed": true
+      }
+    }
+  ]
+}

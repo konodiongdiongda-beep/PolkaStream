@@ -1,0 +1,22 @@
+{
+  "name": "polkastream-remotion-intro",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "render": "remotion render src/index.ts PolkaStreamIntroEn out/polkastream-intro-remotion-en.mp4",
+    "render:showcase": "remotion render src/index.ts PolkaStreamShowcaseCN out/polkastream-showcase-cn.mp4",
+    "preview": "remotion studio src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/media": "^4.0.434",
+    "@remotion/media-utils": "^4.0.434",
+    "@remotion/transitions": "^4.0.434",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.434"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.434"
+  }
+}

@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+
+      - name: Run Forge Tests
+        run: forge test -vv
+
+      - name: Check PolkaStream Branch Coverage
+        run: |
+          set -euo pipefail
+          forge coverage --report summary | tee coverage-summary.txt
+          COVERAGE_LINE="$(grep 'contracts/PolkaStream.sol' coverage-summary.txt | head -n 1)"
+          if [ -z "${COVERAGE_LINE}" ]; then
+            echo "Missing contracts/PolkaStream.sol coverage line"
+            exit 1
+          fi
+          BRANCH_PCT="$(echo "${COVERAGE_LINE}" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $4); split($4,a,"%"); print a[1]}')"
+          awk -v p="${BRANCH_PCT}" 'BEGIN { if ((p + 0) < 80) { printf("Branch coverage too low: %.2f%%\n", p); exit 1 } }'
+          echo "PolkaStream branch coverage: ${BRANCH_PCT}%"
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Frontend CI Check
+        run: pnpm ci-check
+
+  ai_settlement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify AI Settlement Sidecar Flow
+        run: script/ci_ai_settlement_check.sh

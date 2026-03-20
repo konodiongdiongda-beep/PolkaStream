@@ -1,0 +1,2 @@
+window_label,from_block,to_block,streams_created,withdraw_success_count,withdraw_attempt_proxy,withdraw_success_proxy_rate_pct,notify_attempts,notify_failed,notify_failure_rate_pct,retry_attempts,retry_success,retry_success_rate_pct,generated_at_utc
+weekly-2026w11,6181838,latest,0,0,0,0.00,0,0,0.00,0,0,0.00,2026-03-09T09:18:08Z
